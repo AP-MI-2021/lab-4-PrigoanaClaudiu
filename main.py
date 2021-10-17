@@ -104,7 +104,6 @@ def test_procesarelista():
 
 def toatenrpozimparedescresc(l):
     '''
-
     :param l:
     :return:
     '''
