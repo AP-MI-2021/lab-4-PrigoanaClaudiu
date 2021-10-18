@@ -1,174 +1,112 @@
-def cit_lista():
+def citLista():
     l=[]
-    gstring=input("Dati lista de numere, despartite prin virgula: ")
+    gstring=input("Dati lista de numere intregi, despartite prin virgula: ")
     nrasstring=gstring.split(",")
     for x in nrasstring:
-        l.append(float(x))
+        l.append(int(x))
     return l
 
 
-def nrintregi(l):
+def nrprim(x):
     '''
-
-    :param l:
-    :return:
+    Functie ce returneaza True daca un numar este prim, sau False in caz contrar
+    :param x: numarul intreg
+    :return: True daca este prim, False daca nu este prim
     '''
-    rezultat=[]
-    for x in l:
-        if x.is_integer():
-            rezultat.append(x)
-    return rezultat
-
-
-def test_nrintregi():
-    assert nrintregi([5.0,6.2,7.9]) == [5.0]
-    assert nrintregi([3.2,2.7,8.9]) == []
-    assert nrintregi([6.9,5.0,3.1,7.0]) == [5.0,7.0]
-
-
-def maxnr(l,k):
-    '''
-
-    :param l:
-    :param k:
-    :return:
-    '''
-    maxi=None
-    for x in l:
-        if x % k == 0 and (maxi == None or x > maxi):
-            maxi=x
-    return maxi
-
-
-def test_maxnr():
-    assert maxnr([5.2,6.3,8.2,14],2) == 14
-    assert maxnr([6.3, 9.1, 4.0, 12.1, 12], 3) == 12
-
-
-def partefracpalindrom(l):
-    '''
-
-    :param l:
-    :return:
-    '''
-    rez=[]
-    for x in l:
-        xStr=str(x)
-        pf=xStr.split(".")[1]
-        if pf == pf[::-1]:
-            rez.append(x)
-    return rez
-
-
-def test_partefracpalindrom():
-    assert partefracpalindrom([2.11,3.99,2.0,3.2]) == [2.11,3.99,2.0,3.2]
-    assert partefracpalindrom([2.12,3.89,2.1,3.21]) == []
-
-
-def prim(k:int):
-    '''
-
-    :param k:
-    :return:
-    '''
-    ok=True
-    if k < 2:
-        ok=False
+    if x<2:
+        return False
     else:
-        for i in range(2,k//2+1):
-            if k%i == 0:
-                ok=False
-    return ok
-
-
-def procesarelista(l):
-    '''
-
-    :param l:
-    :return:
-    '''
-    rez=[]
-    for x in l:
-        radical=x**0.5
-        pi=int(radical)
-        if prim(pi) == True:
-            rez.append(str(x)[::-1])
-        else:
-            rez.append(x)
-    return rez
-
-
-def test_procesarelista():
-    assert procesarelista([10.0, 100.0, 12.45, 50.0, 101.2]) == ['0.01', 100.0, '54.21', '0.05', 101.2]
-
-
-def toatenrpozimparedescresc(l):
-    '''
-    :param l:
-    :return:
-    '''
-    nrpoz=l[1::2]
-    for i in range(len(nrpoz)-1):
-        if nrpoz[i] < nrpoz[i+1]:
-            return False
+        for i in range(2,x//2+1):
+            if x%i == 0:
+                return False
     return True
 
 
-def nrcifre(l):
+def lFaraNrPrim(l):
     '''
-
-    :param l:
-    :return:
+    Functie ce afiseaza lista dupa eliminarea tuturor elementelor prime.
+    :param l: lista de numere intregi
+    :return: rez, lista dupa eliminarea elementelor
     '''
-    rez= []
-    for x in l:
-        rez.append(x)
-        a=len(str(x))-1
-        rez.append(a)
+    rez=[]
+    for i in l:
+        if nrprim(i) == False:
+            rez.append(i)
     return rez
 
 
+def test_lFaraNrPrim():
+    assert lFaraNrPrim([8, 19, 17, 25]) == [8,25]
+    assert lFaraNrPrim([6,18,7,9]) == [6,18,9]
+    assert lFaraNrPrim([7,9,11]) == [9]
+
+
+def medArt(l,n):
+    '''
+    Fucntie ce returneaza True daca media art. a numerelor din lista este mai mare decat numarul n dat, sau False in caz contrar.
+    :param l: lista de nuemre intregi
+    :param n: numarul n dat
+    :return: True daca ma. este mai mare ca n sau False in caz contrar.
+    '''
+    s=0
+    nr=0
+    for x in l:
+        s=s+x
+        nr=nr+1
+    if s/nr > n:
+        return True
+    else:
+        return False
+
+
+def test_medArt():
+    assert medArt([10, -3, 25, -1, 3, 25, 18],10) is True
+    assert medArt([5,10,2,4],5) is False
+
+
+def nrDvzProp(x):
+    '''
+    Functie ce returneaza numarul de divizori proprii a lui x.
+    :param x: numarul intreg
+    :return: numarul de divizori proprii
+    '''
+    nr=0
+    for i in range(2,x//2+1):
+        if x%i == 0:
+            nr=nr+1
+    return 0
+
+
+
 def main():
-    test_nrintregi()
-    test_maxnr()
-    test_procesarelista()
+    test_lFaraNrPrim()
+    test_medArt()
     l=[]
     while True:
         print("1. Citirea listei.")
-        print("2. Afisarea numerelor intregi.")
-        print("3. Afisarea celui mai mare nr dvz cu un numar dat.")
-        print("4. Afisarea nr ale caror p. fractionara e palindrom.")
-        print("5. Afișarea listei obținute din lista inițială în care float-urile cu partea întreagă a radicalului număr prim sunt puse ca string-uri cu caracterele în ordine inversă.")
-        print("6. Sa se det daca nr de pe poz impare sunt descrescatoare.")
-        print("7. Inserarea nr de cifre dupa fiecare numar.")
+        print("2. Lista dupa eliminarea numerelor prime.")
+        print("3. Să se afișeze dacă media aritmetică a numerelor este mai mare decât un număr n dat.")
+        print("4. Afișarea listei obținută prin adăugarea după fiecare element numărul de divizori proprii ai elementului.")
         print("a. Afisarea listei.")
-        print("x. Iesire")
-
-        optiune=input("Dati optiunea: ")
+        print("x. Iesire.")
+        optiune=input("Dati optiunea:")
         if optiune == "x":
             break
         elif optiune == "1":
-            l=cit_lista()
+            l=citLista()
         elif optiune == "2":
-            print(nrintregi(l))
+            print(lFaraNrPrim(l))
         elif optiune == "3":
-            k=int(input("Dati numaru: "))
-            print(maxnr(l,k))
-        elif optiune == "4":
-            print(partefracpalindrom(l))
-        elif optiune == "5":
-            print(procesarelista(l))
-        elif optiune == "6":
-            if(nrpozimpare(l)):
-                print("Da.")
+            n=int(input("Dati numarul n: "))
+            if medArt(l,n):
+                print("DA.")
             else:
-                print("Nu.")
-        elif optiune == "7":
-            print(nrcifre(l))
+                print("NU.")
+        elif optiune == "4":
+            print(lAdgNrDvz(l))
         elif optiune == "a":
             print(l)
         else:
-            input("Optiune invalida. Reincercati.")
+            input("Optiune invalida.")
 
 main()
-
