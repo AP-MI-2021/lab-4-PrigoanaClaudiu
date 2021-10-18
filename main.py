@@ -138,7 +138,7 @@ def main():
         print("2. Lista dupa eliminarea numerelor prime.")
         print("3. Să se afișeze dacă media aritmetică a numerelor este mai mare decât un număr n dat.")
         print("4. Afișarea listei obținută prin adăugarea după fiecare element numărul de divizori proprii ai elementului.")
-        print("5. Afisarea listei, dupa efectuarea modificarilor necesare.")
+        print("5. Afisarea listei, dupa ce nr sunt inlocuite cu un tuplu.")
         print("a. Afisarea listei.")
         print("x. Iesire.")
         optiune=input("Dati optiunea:")
