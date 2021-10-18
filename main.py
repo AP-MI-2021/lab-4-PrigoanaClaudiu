@@ -117,13 +117,13 @@ def lEfectuare(l):
     '''
     rez=[]
     for x in range(len(l)):
-        rez.append((l[x],x,nrAparitii(l,l[x])))
+        rez.append((l[x], x, nrAparitii(l, l[x])))
     return rez
 
 
 def test_lEfectuare():
     assert lEfectuare([25, 13, 26, 13]) == [(25, 0, 1), (13, 1, 2), (26, 2, 1), (13, 3, 2)]
-    assert lEfectuare([5,3,5,9,3]) == [(5, 0, 2), (3, 1, 2), (5, 2, 2), (9, 3, 1), (3, 4, 2)]
+    assert lEfectuare([5, 3, 5, 9, 3]) == [(5, 0, 2), (3, 1, 2), (5, 2, 2), (9, 3, 1), (3, 4, 2)]
 
 
 def main():
@@ -145,11 +145,11 @@ def main():
         if optiune == "x":
             break
         elif optiune == "1":
-            l=citLista()
+            l = citLista()
         elif optiune == "2":
             print(lFaraNrPrim(l))
         elif optiune == "3":
-            n=int(input("Dati numarul n: "))
+            n = int(input("Dati numarul n: "))
             if medArt(l,n):
                 print("DA.")
             else:
